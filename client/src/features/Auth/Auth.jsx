@@ -11,9 +11,9 @@ const Auth = () => {
     e.preventDefault();
     try {
       if (isLogin) {
-       
+
       } else {
-       
+
       }
     } catch (error) {
       alert(`${isLogin ? 'Login' : 'Registration'} failed!`, error);
