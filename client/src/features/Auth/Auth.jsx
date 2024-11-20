@@ -1,19 +1,21 @@
-import React from 'react'
-import { useState } from 'react';
-import './Auth.css'
+import React, { useState } from 'react';
+import './Auth.css';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('buyer'); // Role state for buyer or seller
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (isLogin) {
-       
+        // Handle Login logic here
       } else {
-       
+        // Handle Registration logic here, including the selected role
+        console.log(`Email: ${email}, Password: ${password}, Role: ${role}`);
+        // You can send this data to your backend for registration
       }
     } catch (error) {
       alert(`${isLogin ? 'Login' : 'Registration'} failed!`, error);
@@ -24,6 +26,36 @@ const Auth = () => {
     <div className="auth-container">
       <div className="auth-form">
         <h2>{isLogin ? 'Login' : 'Register'}</h2>
+
+        {/* Show radio buttons only during registration */}
+        {!isLogin && (
+            <div className="form-group">
+              <label>Account Role:</label>
+              <div className="role-selection">
+                <label>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="buyer"
+                    checked={role === 'buyer'}
+                    onChange={() => setRole('buyer')}
+                  />
+                  Buyer
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="seller"
+                    checked={role === 'seller'}
+                    onChange={() => setRole('seller')}
+                  />
+                  Seller
+                </label>
+              </div>
+            </div>
+          )}
+        
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <input
@@ -57,7 +89,7 @@ const Auth = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Auth
+export default Auth;
