@@ -4,14 +4,14 @@ import './ManageProducts.css'
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([
-    { name: 'Item 1', price: '$1000', quantity: 10 },
-    { name: 'Item 2', price: '$2000', quantity: 22 },
-    { name: 'Item 3', price: '$3000', quantity: 0 }
+    { name: 'Item 1', price: '1000', quantity: 10 },
+    { name: 'Item 2', price: '2000', quantity: 22 },
+    { name: 'Item 3', price: '3000', quantity: 0 }
   ]);
   const [newProduct, setNewProduct] = useState(
-    { name: 'Item 1', price: '$1000', quantity: 10 },
-    { name: 'Item 2', price: '$2000', quantity: 22 },
-    { name: 'Item 3', price: '$3000', quantity: 5 }
+    { name: 'Item 1', price: '1000', quantity: 10 },
+    { name: 'Item 2', price: '2000', quantity: 22 },
+    { name: 'Item 3', price: '3000', quantity: 5 }
   );
   const [editingProduct, setEditingProduct] = useState(null);
 
@@ -78,8 +78,8 @@ const ManageProducts = () => {
           {products.map((product) => (
             <li key={product.id}>
               <div className="product-card">
-                <strong>{product.name}</strong> - ${product.price} -
-                {product.quantity > 0 ? `${product.quantity} in stock` : <span>Out of Stock</span>}
+                <strong>{product.name}</strong>  ${product.price} 
+                {product.quantity > 0 ? <span className='spanText'> {product.quantity} in stock</span> : <span>Out of Stock</span>}
 
                 {/* Edit and Delete Button */}
                 <div className="button-container">

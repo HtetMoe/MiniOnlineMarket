@@ -9,6 +9,14 @@ import AdminDashboard from "./features/admin/AdminDashboard"
 import SellerDashboard from './features/seller/SellerDashboard'
 import ManageProducts from './features/seller/ManageProducts'
 import ManageOrders from './features/seller/ManageOrders'
+import BuyerDashboard from './features/buyer/BuyerDashboard'
+import BuyerOrders from './features/buyer/BuyerOrders'
+import ShoppingCart from './features/buyer/ShoppingCart'
+import ProductReviews from './features/buyer/ProductReviews'
+import ReviewSubmission from "./features/buyer/ReviewSubmission";
+import OrderDetail from "./features/buyer/OrderDetail";
+import BuyerProductList from "./features/buyer/BuyerProductList";
+import ProductDetail from "./features/buyer/ProductDetail";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +40,25 @@ const router = createBrowserRouter([
             { path: "manage-products", element: <ManageProducts /> },
             { path: "manage-orders", element: <ManageOrders /> }
         ]
+    },
+    {
+        path: "/buyer",
+        element: <BuyerDashboard />,
+        children: [
+            { path: "orders", element: <BuyerOrders /> },
+            { path: "cart", element: <ShoppingCart /> },
+            { path: "reviews", element: <ProductReviews /> },
+            { path: "/buyer/products", element: <BuyerProductList /> }
+        ]
+    },
+    {
+        path: "/buyer/review/:orderId", element: <ReviewSubmission />
+    },
+    {
+        path: "/buyer/order-detail/:orderId", element: <OrderDetail />
+    },
+    {
+        path: "/buyer/product/:id", element: <ProductDetail />
     }
 ])
 
