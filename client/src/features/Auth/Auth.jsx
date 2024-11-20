@@ -9,17 +9,7 @@ const Auth = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      if (isLogin) {
-        // Handle Login logic here
-      } else {
-        // Handle Registration logic here, including the selected role
-        console.log(`Email: ${email}, Password: ${password}, Role: ${role}`);
-        // You can send this data to your backend for registration
-      }
-    } catch (error) {
-      alert(`${isLogin ? 'Login' : 'Registration'} failed!`, error);
-    }
+    
   };
 
   return (
