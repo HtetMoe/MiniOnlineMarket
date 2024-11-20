@@ -1,0 +1,48 @@
+/* General styling for the dashboard container */
+.buyer-dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f4f7fc;
+}
+
+.buyer-dashboard-header {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.buyer-dashboard-nav {
+  background-color: white;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.buyer-dashboard-nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.buyer-dashboard-nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.buyer-dashboard-nav a:hover {
+  color: #007bff;
+}
+
+/* Main content area */
+.outlet-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f4f7fc;
+}
