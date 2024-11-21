@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import './ManageSellers.css'
+import adminService from '../../services/adminService.jsx';
 
 const ManageSeller = () => {
     const [sellers, setSellers] = useState([
@@ -10,14 +11,21 @@ const ManageSeller = () => {
 
     //fetch sellers
     useEffect(() => {
-
+        // adminService.getSellers().then((response) => {
+        //     setSellers(response.data);
+        // });
     }, []);
 
     const handleApprove = (id) => {
-
+        adminService.approveSeller(id).then(() => {
+            setSellers(sellers.map((seller) => seller.id === id ? { ...seller, status: 'Approved' } : seller));
+        });
     };
 
     const handleReject = (id) => {
+        adminService.rejectSeller(id).then(() => {
+            setSellers(sellers.filter((seller) => seller.id !== id));
+        });
     };
 
     return (

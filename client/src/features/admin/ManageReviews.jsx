@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import './ManageReviews.css'
+import adminService from '../../services/adminService.jsx';
 
 const ManageReviews = () => {
     const [reviews, setReviews] = useState([
@@ -9,10 +10,15 @@ const ManageReviews = () => {
 
     //fetch reviews
     useEffect(() => {
+        // adminService.getReviews().then((response) => {
+        //     setReviews(response.data);
+        // });
     }, []);
 
     const handleDeleteReview = (id) => {
-
+        adminService.deleteReview(id).then(() => {
+            setReviews(reviews.filter((review) => review.id !== id));
+        });
     };
 
     return (

@@ -7,7 +7,7 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard-container">
       {/* Header Section */}
-      <h2>Admin Dashboard</h2>
+      <h3>Admin Dashboard</h3>
 
       {/* Navigation Links */}
       <nav>

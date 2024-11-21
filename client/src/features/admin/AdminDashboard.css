@@ -3,45 +3,56 @@
 /* General Container */
 .admin-dashboard-container {
   font-family: Arial, sans-serif;
-  padding: 2rem;
+  padding: 1rem;
+  /* Reduced padding */
   background-color: #f8f9fa;
   color: #333;
   min-height: 100vh;
 }
 
 /* Header */
-h2 {
+h3 {
   text-align: center;
-  font-size: 30px;
+  font-size: 20px;
+  /* Reduced font size */
   color: #333;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  /* Reduced margin-bottom */
 }
 
 /* Stats Container for Seller and Buyer Counts (One Row) */
 .stats-container {
   display: flex;
   justify-content: space-around;
-  gap: 2rem;
-  margin-bottom: 3rem;
+  gap: 1rem;
+  /* Reduced gap */
+  margin-bottom: 1.5rem;
+  /* Reduced margin-bottom */
 }
 
 .stat-card {
   background-color: #ffffff;
-  padding: 1.5rem;
-  width: 180px;
+  padding: 1rem;
+  /* Reduced padding */
+  width: 140px;
+  /* Reduced width */
   text-align: center;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Reduced shadow */
 }
 
 .stat-card h3 {
-  font-size: 18px;
+  font-size: 14px;
+  /* Reduced font size */
   color: #007bff;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+  /* Reduced margin-bottom */
 }
 
 .stat-card p {
-  font-size: 28px;
+  font-size: 20px;
+  /* Reduced font size */
   font-weight: bold;
   color: #333;
 }
@@ -52,20 +63,25 @@ nav ul {
   padding: 0;
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 3rem;
+  gap: 1rem;
+  /* Reduced gap */
+  margin-top: 1.5rem;
+  /* Reduced margin-top */
 }
 
 nav ul li {
-  padding: 10px;
+  padding: 6px;
+  /* Reduced padding */
 }
 
 nav ul li a {
   text-decoration: none;
   color: #007bff;
-  font-size: 18px;
+  font-size: 14px;
+  /* Reduced font size */
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 6px 12px;
+  /* Reduced padding */
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
@@ -77,33 +93,41 @@ nav ul li a:hover {
 
 /* Content Area (Outlet Section) */
 .outlet-content {
-  margin-top: 3rem;
-  padding: 2rem;
+  margin-top: 2rem;
+  /* Reduced margin-top */
+  padding: 1.5rem;
+  /* Reduced padding */
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Reduced shadow */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  h2 {
-    font-size: 24px;
+  h3 {
+    font-size: 18px;
+    /* Reduced font size for smaller screens */
   }
 
   .stats-container {
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
+    /* Reduced gap */
   }
 
   nav ul {
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
+    /* Reduced gap */
   }
 
   nav ul li a {
-    font-size: 16px;
-    padding: 8px 15px;
+    font-size: 12px;
+    /* Reduced font size */
+    padding: 5px 10px;
+    /* Reduced padding */
   }
 }

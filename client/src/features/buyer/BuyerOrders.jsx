@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './BuyerOrders.css';
+import buyerService from '../../services/buyerService.jsx';
+import axios from 'axios';
 
 const BuyerOrders = () => {
   const navigate = useNavigate();
@@ -12,16 +14,28 @@ const BuyerOrders = () => {
     { id: 5, status: "Cancelled", totalAmount: 0, buyer: "Buyer5" },
   ]);
 
-  // Fetch orders (currently empty, just for the useEffect)
+
   useEffect(() => {
-    // You can fetch orders here if needed
+    // const fetchBuyerOrders = async () => {
+    //   try {
+    //     const buyerId = 1;
+    //     const data = await buyerService.getBuyerOrders(buyerId);
+    //     setOrders(data); 
+    //   } catch (error) {
+    //     console.error('Error fetching orders:', error);
+    //   }
+    // };
+    // fetchBuyerOrders();
   }, []);
 
   const handleCancelOrder = async (orderId, event) => {
-    event.stopPropagation();  // Prevent the order click handler from being triggered
-    // Logic for canceling the order
-    console.log(`Cancel Order clicked for order ID: ${orderId}`);
-    // Add your cancel logic here, like calling an API
+    // event.stopPropagation();  // Prevent the order click handler from being triggered
+    // try {
+    //   await buyerService.cancelOrder(orderId); 
+    //   setOrders(orders.filter(order => order.id !== orderId));  
+    // } catch (error) {
+    //   console.error('Error cancelling order:', error);
+    // }
   }
 
   const handleOrderClick = (orderId) => {

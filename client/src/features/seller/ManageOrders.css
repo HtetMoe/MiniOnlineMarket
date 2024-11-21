@@ -36,7 +36,8 @@ li {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-  gap: 10px; /* Space between order details and buttons */
+  gap: 10px;
+  /* Space between order details and buttons */
 }
 
 .order-card {
@@ -52,7 +53,8 @@ li {
 
 .button-container {
   display: flex;
-  gap: 10px; /* Space between buttons */
+  gap: 10px;
+  /* Space between buttons */
 }
 
 button {

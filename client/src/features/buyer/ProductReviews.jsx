@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import './ProductReviews.css'
+import buyerService from '../../services/buyerService.jsx';
+import axios from 'axios';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([

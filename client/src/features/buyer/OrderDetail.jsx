@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './OrderDetail.css';
 import { jsPDF } from 'jspdf';
+import buyerService from '../../services/buyerService.jsx';
+import axios from 'axios';
 
 const OrderDetail = () => {
     const { orderId } = useParams(); // Get the orderId from the URL
     const navigate = useNavigate();
 
     // Sample order data (replace this with real fetch later)
+    //const [order, setOrder] = useState(null);
     const [order, setOrder] = useState({
         id: 1,
         status: "Delivered",
@@ -21,7 +24,17 @@ const OrderDetail = () => {
     });
 
     // Fetch order details (simulated here)
-    useEffect(() => {}, [orderId]);
+    useEffect(() => {
+        // const fetchOrderDetails = async (orderId) => {
+        //     try {
+        //         const data = await buyerService.getOrderDetail(orderId);
+        //         setOrder(data);  
+        //     } catch (error) {
+        //         console.error('Error fetching order details:', error);
+        //     }
+        // };
+        // fetchOrderDetails(orderId);
+    }, [orderId]);
 
     // Handle PDF download
     const handleDownloadPDF = () => {

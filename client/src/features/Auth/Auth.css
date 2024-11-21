@@ -45,23 +45,52 @@
   border-color: #007bff;
 }
 
-/* Role selection styling */
-.role-selection {
-  margin-top: 15px;
+/* Role selection container */
+.role-selection-container {
   display: flex;
-  justify-content: space-evenly;
-  gap: 15px;
+  flex-direction: column;
+  /* Stack label and radio buttons vertically */
+  align-items: flex-start;
+  /* Align everything to the left */
+  margin-top: 10px;
 }
 
-.role-selection label {
-  font-size: 16px;
+/* Label for Account Role */
+.role-selection-container label {
+  font-size: 14px;
+  /* Set the font size */
+  font-weight: bold;
+  /* Optionally, make it bold */
+  margin-bottom: 8px;
+  /* Space below the label */
+}
+
+/* Role selection container (radio buttons and labels) */
+.role-selection {
   display: flex;
+  justify-content: flex-start;
+  /* Align radio buttons and labels to the left */
+  gap: 20px;
+  /* Space between radio buttons and labels */
+  width: 100%;
+  /* Ensures the radio buttons take up the full width */
+}
+
+/* Role selection label */
+.role-selection label {
+  font-size: 14px;
+  /* Set font size */
+  display: flex;
+  /* Ensure the label and radio button are inline-flex */
   align-items: center;
+  /* Align radio button and label text vertically */
   cursor: pointer;
+  /* Change cursor on hover */
 }
 
 .role-selection input[type="radio"] {
   margin-right: 8px;
+  /* Add space between radio button and label text */
 }
 
 /* Submit button */
@@ -97,33 +126,42 @@
   text-decoration: underline;
 }
 
+/* Error message styling */
+.error-message {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .auth-form {
-      padding: 1rem;
-      max-width: 90%;
+    padding: 1rem;
+    max-width: 90%;
   }
 
   .auth-form h2 {
-      font-size: 20px;
+    font-size: 20px;
   }
 
   .form-group input {
-      font-size: 14px;
-      padding: 10px;
+    font-size: 14px;
+    padding: 10px;
   }
 
   .auth-btn {
-      font-size: 14px;
+    font-size: 14px;
   }
 
   /* Adjusting role selection for small screens */
   .role-selection {
-      flex-direction: column;
-      gap: 10px;
+    flex-direction: column;
+    /* Stack role selection vertically on smaller screens */
+    gap: 10px;
   }
 
   .role-selection label {
-      font-size: 14px;
+    font-size: 14px;
   }
 }
