@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './ProductDetail.css';
+import axios from 'axios';
+import buyerService from '../../services/buyerService.jsx';
 
 const ProductDetail = () => {
   const { id } = useParams(); // Get the product id from the URL
@@ -23,13 +25,35 @@ const ProductDetail = () => {
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(1);
 
-  const handleAddToCart = () => {
-    const productWithQuantity = { ...product, quantity };
-    setCart([...cart, productWithQuantity]);
-    alert(`${product.name} added to cart with quantity ${quantity}`);
+  //fetch product detail
+  useEffect(() => {
+    // const fetchProductDetails = async (productId) => {
+    //   try {
+    //     const data = await buyerService.getProductDetail(productId);  
+    //     setProduct(data); 
+    //   } catch (error) {
+    //     console.error('Error fetching product details:', error);
+    //   }
+    // };
+    // fetchProductDetails(id);
+  }, [id]);
 
-    // Redirect back to the product list
-    navigate('/buyer/products');
+
+  const handleAddToCart = async() => {
+    // if (product) {
+    //   const productWithQuantity = { ...product, quantity };
+
+    //   try {
+    //     // Add product to cart using buyerService API
+    //     await buyerService.addItemToCart(product.id, quantity);
+    //     alert(`${product.name} added to cart with quantity ${quantity}`);
+    //     // Redirect to product list or cart after adding
+    //     navigate('/buyer/cart');
+    //   } catch (error) {
+    //     console.error('Error adding product to cart:', error);
+    //     alert('Failed to add product to cart.');
+    //   }
+    // }
   };
 
   const handleQuantityChange = (e) => {

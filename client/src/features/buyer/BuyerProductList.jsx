@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './BuyerProductList.css';
+import buyerService from '../../services/buyerService.jsx';
+import axios from 'axios';
 
 const BuyerProductList = () => {
   const navigate = useNavigate();
@@ -14,18 +16,36 @@ const BuyerProductList = () => {
     { id: 5, name: 'Product E', category: 'Clothing', price: 30, description: 'A cool t-shirt', imageUrl: 'https://via.placeholder.com/150' }
   ]);
 
+  //fetch products
+  useEffect(() => {
+    // const fetchProducts = async () => {
+    //   try {
+    //     const response = await buyerService.getBuyerProducts(buyerId); // Fetch products for the buyer
+    //     setProducts(response.data);  // Set the fetched products in state
+    //   } catch (error) {
+    //     console.error('Error fetching buyer products:', error);
+    //   }
+    // };
+    // fetchProducts();
+  }, []);
+
   // Cart state
   const [cart, setCart] = useState([]);
 
   // Handle adding to cart
-  const handleAddToCart = (productId, quantity, event) => {
+  const handleAddToCart = async (productId, quantity, event) => {
     event.stopPropagation();  // Stop the event from propagating to the parent click handler
-    
-    const product = products.find(p => p.id === productId);
-    if (product) {
-      const productWithQuantity = { ...product, quantity }; // Add quantity to product
-      setCart([...cart, productWithQuantity]); // Add the product to the cart
-      alert(`${product.name} added to cart with quantity ${quantity}`);
+
+    try {
+      const product = products.find(p => p.id === productId);
+      if (product) {
+        // Add item to the cart via API call
+        await buyerService.addItemToCart(productId, quantity);
+        setCart([...cart, { ...product, quantity }]); // Update the local cart state
+        alert(`${product.name} added to cart with quantity ${quantity}`);
+      }
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
     }
   };
 

@@ -1,15 +1,44 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import './Auth.css';
+import authService from '../../services/authService';
+import axios from 'axios';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('buyer'); // Role state for buyer or seller
+  const [email, setEmail] = useState('moe@gmai.com');
+  const [password, setPassword] = useState('1111');
+  const [role, setRole] = useState('Buyer');
+  const [username, setUsername] = useState('Moe');
+  const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    setError('');
+    console.log("press submit");
+
+    try {
+      if (isLogin) {
+
+        //const loginData = await authService.login(email, password);
+        //console.log('Login success:', loginData);
+
+        navigate(`/admin/manage-sellers`);
+        //navigate(`/seller/manage-products`);
+        // navigate(`/buyer/products`);
+
+      } else {
+        //const registerData = await authService.register(email, password, role, username);
+        //console.log('Registration success:', registerData);
+
+        setIsLogin(true)
+      }
+    } catch (err) {
+      setError(`${isLogin ? 'Login' : 'Registration'} failed!`);
+      console.error(err);
+    }
   };
 
   return (
@@ -17,8 +46,44 @@ const Auth = () => {
       <div className="auth-form">
         <h2>{isLogin ? 'Login' : 'Register'}</h2>
 
-        {/* Show radio buttons only during registration */}
-        {!isLogin && (
+        {/* Show error message if exists */}
+        {error && <div className="error-message">{error}</div>}
+
+        <form onSubmit={handleSubmit}>
+          {/* Username input for registration */}
+          {!isLogin && (
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+          )}
+
+          <div className="form-group">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Show radio buttons only during registration */}
+          {!isLogin && (
             <div className="form-group">
               <label>Account Role:</label>
               <div className="role-selection">
@@ -45,30 +110,12 @@ const Auth = () => {
               </div>
             </div>
           )}
-        
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
+
           <button type="submit" className="auth-btn">
             {isLogin ? 'Login' : 'Register'}
           </button>
         </form>
+
         <div className="toggle-link">
           <span>
             {isLogin ? "Don't have an account?" : 'Already have an account?'}

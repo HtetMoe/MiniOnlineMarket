@@ -2,94 +2,118 @@
 
 /* General Container for the Manage Sellers Page */
 .manage-sellers-container {
-    padding: 2rem;
-    background-color: #f9f9f9;
-  }
-  
-  h2 {
-    text-align: center;
-    font-size: 30px;
-    color: #333;
-    margin-bottom: 2rem;
-  }
-  
+  padding: 1rem;
+  /* Reduced padding */
+  background-color: #f9f9f9;
+}
+
+/* Header */
+h2 {
+  text-align: center;
+  font-size: 24px;
+  /* Reduced font size */
+  color: #333;
+  margin-bottom: 1.5rem;
+  /* Reduced margin */
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  /* Reduced top margin */
+}
+
+th,
+td {
+  padding: 8px;
+  /* Reduced padding */
+  text-align: center;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  /* Reduced font size */
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+td {
+  background-color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+/* Button Styling */
+button {
+  padding: 6px 12px;
+  /* Reduced padding */
+  font-size: 12px;
+  /* Reduced font size */
+  cursor: pointer;
+  border-radius: 4px;
+  /* Rounded corners */
+  border: none;
+  transition: background-color 0.3s ease;
+  margin-right: 8px;
+  /* Added space between buttons */
+}
+
+/* Approve Button Style */
+button.approve {
+  background-color: #28a745;
+  color: white;
+}
+
+button.approve:hover {
+  background-color: #218838;
+}
+
+/* Reject Button Style */
+button.reject {
+  background-color: #dc3545;
+  color: white;
+}
+
+button.reject:hover {
+  background-color: #c82333;
+}
+
+/* Styling for 'Pending' status */
+.pending {
+  color: #ffc107;
+  font-weight: bold;
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 768px) {
   table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1.5rem;
+    font-size: 12px;
+    /* Reduced font size for smaller screens */
   }
-  
+
+  button {
+    padding: 5px 10px;
+    /* Reduced padding */
+    font-size: 10px;
+    /* Reduced font size for buttons */
+  }
+
   th,
   td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-    font-size: 16px;
+    padding: 6px;
+    /* Reduced padding for cells */
   }
-  
-  th {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
+
+  h2 {
+    font-size: 20px;
+    /* Smaller header for smaller screens */
+    margin-bottom: 1rem;
+    /* Reduced margin */
   }
-  
-  td {
-    background-color: #fff;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f7f7f7;
-  }
-  
-  /* Styling for buttons inside the table */
-  button {
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
-    border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Approve Button Style */
-  button.approve {
-    background-color: #28a745;
-    color: white;
-  }
-  
-  button.approve:hover {
-    background-color: #218838;
-  }
-  
-  /* Reject Button Style */
-  button.reject {
-    background-color: #dc3545;
-    color: white;
-  }
-  
-  button.reject:hover {
-    background-color: #c82333;
-  }
-  
-  /* Styling for 'Pending' status */
-  .pending {
-    color: #ffc107;
-    font-weight: bold;
-  }
-  
-  /* Responsiveness for smaller screens */
-  @media (max-width: 768px) {
-    table {
-      font-size: 14px;
-    }
-  
-    button {
-      padding: 6px 12px;
-      font-size: 12px;
-    }
-  
-    th, td {
-      padding: 10px;
-    }
-  }
-  
+}
