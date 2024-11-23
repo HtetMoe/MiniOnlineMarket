@@ -1,6 +1,5 @@
 package com.momarket.cart;
 
-import com.momarket.user.Buyer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,10 +19,11 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "buyer_id", nullable = false)
-    private Buyer buyer;
+//    @OneToOne
+//    @JoinColumn(name = "buyer_id", nullable = false)
+//    private Buyer buyer;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<CartItem> cartItems;
+
 }

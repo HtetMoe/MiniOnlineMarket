@@ -6,10 +6,10 @@ import axios from 'axios';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState('moe@gmai.com');
-  const [password, setPassword] = useState('1111');
-  const [role, setRole] = useState('Buyer');
-  const [username, setUsername] = useState('Moe');
+  const [email, setEmail] = useState('moe@gmail.com');
+  const [password, setPassword] = useState('0000');
+  const [role, setRole] = useState('Seller');
+  const [username, setUsername] = useState('Htet Moe');
   const [error, setError] = useState('');
 
   const navigate = useNavigate();
@@ -17,26 +17,21 @@ const Auth = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    console.log("press submit");
-
     try {
       if (isLogin) {
-
         //const loginData = await authService.login(email, password);
         //console.log('Login success:', loginData);
-
         navigate(`/admin/manage-sellers`);
         //navigate(`/seller/manage-products`);
         // navigate(`/buyer/products`);
 
       } else {
-        //const registerData = await authService.register(email, password, role, username);
-        //console.log('Registration success:', registerData);
-
-        setIsLogin(true)
+        const registerData = await authService.register(email, password, role, username);
+        console.log('Registration success:', registerData);
+        setIsLogin(true) // if register success, redirect to login
       }
     } catch (err) {
-      setError(`${isLogin ? 'Login' : 'Registration'} failed!`);
+      setError(`${isLogin ? 'Login' : 'Registration'} failed! Please try again.`);
       console.error(err);
     }
   };

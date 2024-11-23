@@ -1,19 +1,20 @@
 package com.momarket.order;
 
+import com.momarket.cart.Cart;
+import com.momarket.user.buyer.Buyer;
 import com.momarket.user.seller.Seller;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class OrderService {
-
-    @Autowired
-    private OrderItemRepository orderItemRepository;
-
-    @Autowired
-    private OrderRepository orderRepository;
+    private final OrderItemRepository orderItemRepository;
+    private final OrderRepository orderRepository;
 
     // Check if a product has been ordered (exists in any OrderItem)
     public boolean hasOrdersForProduct(Long productId) {
@@ -29,5 +30,45 @@ public class OrderService {
                 .filter(order -> order.getOrderItems().stream()
                         .anyMatch(orderItem -> orderItem.getProduct().getSeller().equals(seller)))
                 .toList();
+    }
+
+    public Order createOrder(Cart cart, Buyer buyer) {
+        // Create a new Order entity
+        Order order = new Order();
+        order.setBuyer(buyer);
+        order.setStatus(OrderStatus.CONFIRMED);
+
+        // Convert CartItems to OrderItems
+        List<OrderItem> orderItems = cart.getCartItems().stream()
+                .map(cartItem -> {
+                    // Convert CartItem to OrderItem
+                    OrderItem orderItem = new OrderItem();
+                    orderItem.setProduct(cartItem.getProduct());
+                    orderItem.setQuantity(cartItem.getQuantity());
+                    orderItem.setSubtotal(cartItem.getSubtotal());
+                    orderItem.setSubtotal(cartItem.getSubtotal().multiply(new BigDecimal(cartItem.getQuantity())));
+                    orderItem.setOrder(order);  // Associate the Order with the OrderItem
+                    return orderItem;
+                })
+                .collect(Collectors.toList());
+
+        // Set the order items to the Order
+        order.setOrderItems(orderItems);
+
+        // Calculate and set the total amount
+        order.setTotalAmount(calculateTotalAmount(orderItems));
+
+        // Save the order and return it
+        return orderRepository.save(order);
+    }
+
+    private BigDecimal calculateTotalAmount(List<OrderItem> orderItems) {
+        return orderItems.stream()
+                .map(OrderItem::getSubtotal)  // Get the subtotal for each OrderItem
+                .reduce(BigDecimal.ZERO, BigDecimal::add);  // Sum the subtotals using BigDecimal
+    }
+
+    public List<Order> getOrdersByBuyer(Long buyerId) {
+        return orderRepository.findByBuyerId(buyerId);
     }
 }

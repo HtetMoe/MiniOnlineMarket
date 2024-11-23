@@ -1,7 +1,8 @@
-package com.momarket.user;
+package com.momarket.user.buyer;
 
 import com.momarket.cart.Cart;
 import com.momarket.order.Order;
+import com.momarket.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,15 +26,13 @@ public class Buyer {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne(mappedBy = "buyer", cascade = CascadeType.ALL)
+    @OneToOne//(mappedBy = "buyer", cascade = CascadeType.ALL)
     private Cart cart;
 
     @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
     private List<Order> orders;
 
-    @Column(nullable = false)
     private String shippingAddress;
 
-    @Column(nullable = false)
     private String billingAddress;
 }

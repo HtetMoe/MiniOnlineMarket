@@ -37,6 +37,10 @@ public class ProductService {
         return productRepository.save(product);
     }
 
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();  // Retrieves all products from the database
+    }
+
     // Delete a product
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);

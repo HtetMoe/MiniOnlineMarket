@@ -61,9 +61,19 @@ const ProductDetail = () => {
     setQuantity(value);
   };
 
+  const handleBack = () => {
+    navigate(-1); // Navigate to the previous page
+  };
+
   return (
     <div className="product-detail-container">
+     
       <div className="product-detail-body">
+        {/* Back Button */}
+        <button className="back-button" onClick={handleBack}>
+          ← Back
+        </button>
+
         <div className="product-image">
           <img src={product.imageUrl} alt={product.name} />
         </div>

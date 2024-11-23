@@ -1,7 +1,7 @@
 package com.momarket.review;
 
 import com.momarket.product.Product;
-import com.momarket.user.Buyer;
+import com.momarket.user.buyer.Buyer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

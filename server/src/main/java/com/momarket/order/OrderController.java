@@ -32,11 +32,11 @@ public class OrderController {
     }
 
     // Get orders by seller ID (newly added endpoint)
-    @GetMapping("/seller/{sellerId}")
-    public ResponseEntity<List<OrderDTO>> getOrdersBySeller(@PathVariable Long sellerId) {
-        List<OrderDTO> orders = orderService.getOrdersBySeller(sellerId);
-        return ResponseEntity.ok(orders);
-    }
+//    @GetMapping("/seller/{sellerId}")
+//    public ResponseEntity<List<OrderDTO>> getOrdersBySeller(@PathVariable Long sellerId) {
+//        List<OrderDTO> orders = orderService.getOrdersBySeller(sellerId);
+//        return ResponseEntity.ok(orders);
+//    }
 
     // Update order status
     @PutMapping("/{orderId}/status")

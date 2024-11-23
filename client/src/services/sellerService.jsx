@@ -1,23 +1,27 @@
 import axios from 'axios';
 
+const API_URL = 'http://localhost:8005/api/v1';
+
 // Fetch products for a seller
-const getSellerProducts = () => {
-  return axios.get('/api/sellers/products');
+const getSellerProducts = (sellerID) => {
+  console.log('sellerID: ', sellerID)
+  return axios.get(`${API_URL}/products/seller/${sellerID}`);
 };
 
 // Create a new product for the seller
-const createProduct = (productData) => {
-  return axios.post('/api/sellers/products', productData);
+const createProduct = (productData, sellerID) => {
+  console.log('productData : ', productData, ', sellerID : ', sellerID)
+  return axios.post(`${API_URL}/products/seller/${sellerID}`, productData);
 };
 
 // Update an existing product for the seller
 const updateProduct = (productId, productData) => {
-  return axios.put(`/api/sellers/products/${productId}`, productData);
+  return axios.put(`${API_URL}/products/${productId}`, productData);
 };
 
 // Delete a product for the seller
 const deleteProduct = (productId) => {
-  return axios.delete(`/api/sellers/products/${productId}`);
+  return axios.delete(`${API_URL}/products/${productId}`);
 };
 
 // Fetch orders for a seller

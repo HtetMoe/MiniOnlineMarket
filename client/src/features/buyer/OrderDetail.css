@@ -1,111 +1,130 @@
 /* Container for Order Detail */
 .order-detail-container {
-    padding: 2rem;
-    background-color: #f8f9fa;
-    max-width: 800px;
-    margin: 0 auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Title */
-  h2 {
-    font-size: 28px;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
-  
-  /* Order Details Section */
-  .order-details {
-    font-size: 16px;
-    margin-bottom: 1.5rem;
-  }
-  
-  .order-details strong {
-    font-weight: bold;
-  }
-  
-  .order-items {
-    margin-top: 1.5rem;
-  }
-  
-  .order-items ul {
-    padding: 0;
-    list-style-type: none;
-  }
-  
-  .order-items li {
-    background-color: #fff;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative; /* For absolute positioning of the back button */
+}
+
+/* Back button styling */
+.back-button {
+  position: absolute; /* Positioning the back button */
+  top: 10px;
+  left: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+/* Title */
+h2 {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Order Details Section */
+.order-details {
+  font-size: 16px;
+  margin-bottom: 1.5rem;
+}
+
+.order-details strong {
+  font-weight: bold;
+}
+
+.order-items {
+  margin-top: 1.5rem;
+}
+
+.order-items ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.order-items li {
+  background-color: #fff;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.order-items li strong {
+  font-size: 16px;
+}
+
+.order-items .item-price {
+  font-weight: bold;
+  color: #28a745;
+}
+
+/* Buttons for Download/Print */
+.receipt-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Place the total amount at the right end of the card */
+.total-amount {
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px; /* To create some space between the items and total amount */
+}
+
+/* Button Styling for 'Download Receipt' */
+.receipt-actions button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.receipt-actions button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .order-detail-container {
     padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
   }
-  
-  .order-items li strong {
-    font-size: 16px;
+
+  h2 {
+    font-size: 24px;
   }
-  
-  .order-items .item-price {
-    font-weight: bold;
-    color: #28a745;
+
+  .order-items li {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  /* Buttons for Download/Print */
-  .receipt-actions {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  
-  /* Place the total amount at the right end of the card */
-  .total-amount {
-    font-weight: bold;
-    font-size: 18px;
-    color: #333;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px; /* To create some space between the items and total amount */
-  }
-  
-  /* Button Styling for 'Download Receipt' */
+
   .receipt-actions button {
-    padding: 10px 20px;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    transition: background-color 0.3s;
+    width: 100%;
+    font-size: 12px;
   }
-  
-  .receipt-actions button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .order-detail-container {
-      padding: 1rem;
-    }
-  
-    h2 {
-      font-size: 24px;
-    }
-  
-    .order-items li {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .receipt-actions button {
-      width: 100%;
-      font-size: 12px;
-    }
-  }
-  
+}

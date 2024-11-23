@@ -1,5 +1,5 @@
 package com.momarket.order;
-import com.momarket.user.Buyer;
+import com.momarket.user.buyer.Buyer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

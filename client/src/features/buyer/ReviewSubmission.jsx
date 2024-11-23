@@ -29,7 +29,7 @@ const ReviewSubmission = () => {
       const response = await buyerService.submitReview(orderId, review.rating, review.comment);
       if (response) {
         alert('Review submitted successfully!');
-        // navigate(`/buyer/order-detail/${orderId}`);  // Uncomment if needed
+        navigate(`/buyer/order-detail/${orderId}`);  // Navigate back to order detail page
       }
     } catch (error) {
       console.error('Error submitting review:', error);
@@ -37,8 +37,15 @@ const ReviewSubmission = () => {
     }
   };
 
+  // Handle back button click
+  const handleBackClick = () => {
+    navigate(-1);  // Go back to the previous page
+  };
+
   return (
     <div className="review-submission-container">
+      <button className="back-button" onClick={handleBackClick}>← Back</button>
+
       <h2>Submit Review for Order #{orderId}</h2>
       <form onSubmit={handleSubmit}>
         {/* Rating Input (Star Rating) */}

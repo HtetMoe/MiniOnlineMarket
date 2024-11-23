@@ -1,72 +1,73 @@
 import React, { useState, useEffect } from 'react';
 import './ManageProducts.css';
 import sellerService from '../../services/sellerService.jsx';
+import userData from '../../services/UserData.jsx';
 
 const ManageProducts = () => {
-  const [products, setProducts] = useState([
-    { id: 1, name: 'Item 1', price: '1000', quantity: 10, image: '' },
-    { id: 2, name: 'Item 2', price: '2000', quantity: 22, image: '' },
-    { id: 3, name: 'Item 3', price: '3000', quantity: 0, image: '' }
-  ]);
+  const [products, setProducts] = useState([])
 
-  const [newProduct, setNewProduct] = useState({ name: '', price: '', quantity: '', image: '' });
+  const [newProduct, setNewProduct] = useState({ name: '', price: '', stockQuantity: '', categoryName: '', description: '', categoryId: 0 }); //image: ''
   const [editingProduct, setEditingProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  //fetch product
   useEffect(() => {
-    // const fetchProducts = async () => {
-    //   try {
-    //     const data = await sellerService.getSellerProducts();
-    //     setProducts(data);
-    //   } catch (error) {
-    //     console.error('Error fetching products:', error);
-    //   }
-    // };
-    // fetchProducts();
+    const fetchProducts = async () => {
+      if (userData) {
+        try {
+          const sellerID = userData.id
+          const response = await sellerService.getSellerProducts(sellerID);
+          setProducts(response.data);
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      }
+    };
+    fetchProducts();
   }, []);
 
-  // Handle submit for adding or editing a product
   const handleSubmitProduct = async (e) => {
     e.preventDefault();
-    // if (editingProduct) {
-    //   // Update existing product
-    //   try {
-    //     const updatedProduct = await sellerService.updateProduct(editingProduct.id, newProduct);
-    //     setProducts(products.map(product =>
-    //       product.id === editingProduct.id ? updatedProduct : product
-    //     ));
-    //   } catch (error) {
-    //     console.error('Error updating product:', error);
-    //   }
-    // } else {
-    //   // Add new product
-    //   try {
-    //     const product = await sellerService.createProduct(newProduct);
-    //     setProducts([...products, product]);
-    //   } catch (error) {
-    //     console.error('Error adding product:', error);
-    //   }
-    // }
+    if (userData) {
+      const sellerID = userData.id
+      if (editingProduct) {
+        try {
+          // Update existing product
+          const response = await sellerService.updateProduct(editingProduct.productId, newProduct);
+          console.log('updated : ', response.data)
+          setProducts(products.map(product =>
+            product.productId === editingProduct.productId ? response.data : product
+          ));
+        } catch (error) {
+          console.error('Error updating product:', error);
+        }
+      } else {
+        try {
+          // Add new product
+          const product = await sellerService.createProduct(newProduct, sellerID);
+          setProducts([...products, product.data]);
+        } catch (error) {
+          console.error('Error adding product:', error);
+        }
+      }
+    }
     setIsModalOpen(false);
-    setNewProduct({ name: '', price: '', quantity: '', image: '' });
+    setNewProduct({ name: '', price: '', stockQuantity: '', categoryName: '', description: '', categoryId: 0 });
     setEditingProduct(null);
   };
 
-  // Open modal for adding new product
   const handleAddProduct = () => {
     setIsModalOpen(true);  // Open the modal
     setEditingProduct(null);  // Ensure we're not editing an existing product
-    setNewProduct({ name: '', price: '', quantity: '', image: '' }); // Reset the form
+    setNewProduct({ name: '', price: '', stockQuantity: '', categoryName: '', description: '', categoryId: 0 }); // Reset the form
   };
 
-  // Open modal for editing existing product
   const handleEditProduct = (product) => {
     setIsModalOpen(true); // Open the modal
     setEditingProduct(product); // Set the product for editing
-    setNewProduct({ name: product.name, price: product.price, quantity: product.quantity, image: product.image });
+    setNewProduct({ name: product.name, price: product.price, stockQuantity: product.stockQuantity, categoryName: product.categoryName, description: product.description, categoryId: 0 });
   };
 
-  // Handle image selection
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -74,26 +75,23 @@ const ManageProducts = () => {
     }
   };
 
-  // Handle delete product
-  const handleDelete = async (id) => {
+  const handleDelete = async (productId) => {
     try {
-      await sellerService.deleteProduct(id);
-      setProducts(products.filter(product => product.id !== id));
+      await sellerService.deleteProduct(productId);
+      setProducts(products.filter(product => product.productId !== productId));
     } catch (error) {
       console.error('Error deleting product:', error);
     }
   };
 
-  // Close modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setNewProduct({ name: '', price: '', quantity: '', image: '' });
+    setNewProduct({ name: '', price: '', stockQuantity: '', categoryName: '', description: '' });
     setEditingProduct(null);
   };
 
   return (
     <div className="product-management-container">
-      <h2>Product Management</h2>
 
       {/* Button to add new product */}
       <button onClick={handleAddProduct} className="add-product-btn">Add New Product</button>
@@ -103,18 +101,20 @@ const ManageProducts = () => {
         <h3>Existing Products</h3>
         <ul className="product-list">
           {products.map((product) => (
-            <li key={product.id} className="product-item">
+            <li key={product.productId} className="product-item">
               <div className="product-image-container">
-                <img src={product.image || 'https://via.placeholder.com/100'} alt={product.name} className="product-image" />
+                <img src={'https://via.placeholder.com/100'} alt={product.name} className="product-image" />
               </div>
               <div className="product-details">
                 <strong>{product.name}</strong>
                 <p>${product.price}</p>
-                <p>{product.quantity > 0 ? `${product.quantity} in stock` : <span className="out-of-stock">Out of Stock</span>}</p>
+                <p>{product.stockQuantity > 0 ? `${product.stockQuantity} in stock` : <span className="out-of-stock">Out of Stock</span>}</p>
+                {/* Display category */}
+                <p><strong>Category:</strong> {product.categoryName}</p>
               </div>
               <div className="button-container">
                 <button className="edit" onClick={() => handleEditProduct(product)}>Edit</button>
-                <button className="delete" onClick={() => handleDelete(product.id)} disabled={product.quantity === 0}>Delete</button>
+                <button className="delete" onClick={() => handleDelete(product.productId)} disabled={product.stockQuantity === 0}>Delete</button>
               </div>
             </li>
           ))}
@@ -144,8 +144,22 @@ const ManageProducts = () => {
               <input
                 type="number"
                 placeholder="Stock Quantity"
-                value={newProduct.quantity}
-                onChange={(e) => setNewProduct({ ...newProduct, quantity: e.target.value })}
+                value={newProduct.stockQuantity}
+                onChange={(e) => setNewProduct({ ...newProduct, stockQuantity: e.target.value })}
+                required
+              />
+              {/* New category and description fields */}
+              <input
+                type="text"
+                placeholder="Category"
+                value={newProduct.categoryName}
+                onChange={(e) => setNewProduct({ ...newProduct, categoryName: e.target.value })}
+                required
+              />
+              <textarea
+                placeholder="Product Description"
+                value={newProduct.description}
+                onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
                 required
               />
               <input

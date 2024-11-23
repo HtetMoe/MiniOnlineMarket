@@ -56,6 +56,7 @@ public class ProductController {
                     return categoryService.createCategory(newCategory);
                 });
 
+
         // Convert DTO to Product
         Product product = productMapper.toEntity(createProductDTO, seller.get(), category);
 
@@ -128,6 +129,14 @@ public class ProductController {
         return ResponseEntity.ok(responseDTO);
     }
 
+    @GetMapping
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts() {
+        List<Product> products = productService.getAllProducts();  // Calling the service to get products
+
+        List<ProductResponseDTO> responseDTOs = productMapper.toResponseDTOList(products);
+        return ResponseEntity.ok(responseDTOs);
+    }
+
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
@@ -151,6 +160,4 @@ public class ProductController {
 
         return ResponseEntity.noContent().build(); // Successfully deleted
     }
-
-
 }
