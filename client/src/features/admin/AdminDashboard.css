@@ -1,0 +1,133 @@
+/* AdminDashboard.css */
+
+/* General Container */
+.admin-dashboard-container {
+  font-family: Arial, sans-serif;
+  padding: 1rem;
+  /* Reduced padding */
+  background-color: #f8f9fa;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Header */
+h3 {
+  text-align: center;
+  font-size: 20px;
+  /* Reduced font size */
+  color: #333;
+  margin-bottom: 1rem;
+  /* Reduced margin-bottom */
+}
+
+/* Stats Container for Seller and Buyer Counts (One Row) */
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  /* Reduced gap */
+  margin-bottom: 1.5rem;
+  /* Reduced margin-bottom */
+}
+
+.stat-card {
+  background-color: #ffffff;
+  padding: 1rem;
+  /* Reduced padding */
+  width: 140px;
+  /* Reduced width */
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Reduced shadow */
+}
+
+.stat-card h3 {
+  font-size: 14px;
+  /* Reduced font size */
+  color: #007bff;
+  margin-bottom: 6px;
+  /* Reduced margin-bottom */
+}
+
+.stat-card p {
+  font-size: 20px;
+  /* Reduced font size */
+  font-weight: bold;
+  color: #333;
+}
+
+/* Navigation Links */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  /* Reduced gap */
+  margin-top: 1.5rem;
+  /* Reduced margin-top */
+}
+
+nav ul li {
+  padding: 6px;
+  /* Reduced padding */
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 14px;
+  /* Reduced font size */
+  font-weight: bold;
+  padding: 6px 12px;
+  /* Reduced padding */
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #e7f1ff;
+  color: #0056b3;
+}
+
+/* Content Area (Outlet Section) */
+.outlet-content {
+  margin-top: 2rem;
+  /* Reduced margin-top */
+  padding: 1.5rem;
+  /* Reduced padding */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Reduced shadow */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h3 {
+    font-size: 18px;
+    /* Reduced font size for smaller screens */
+  }
+
+  .stats-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    /* Reduced gap */
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    /* Reduced gap */
+  }
+
+  nav ul li a {
+    font-size: 12px;
+    /* Reduced font size */
+    padding: 5px 10px;
+    /* Reduced padding */
+  }
+}
